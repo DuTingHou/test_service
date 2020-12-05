@@ -1,4 +1,4 @@
-from preprocess import get_text
+from test_service.preprocess import get_text
 
 
 class test_service(object):

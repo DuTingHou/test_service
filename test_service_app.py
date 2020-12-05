@@ -3,11 +3,11 @@ from utils.log_conf_parse import get_log_conf
 from utils.logger_helper import logger_helper
 from test_service import test_service
 
-log_conf = get_log_conf("./conf/log.conf")
-apploger = logger_helper(log_conf, "base_logger")
+log_conf = get_log_conf("./conf/log.conf", "base_logger")
+apploger = logger_helper(log_conf)
 app = Flask(__name__)
-app.config.from_pyfile("./conf/app_conf_prod.py",silent=True)
-ts = test_service()
+app.config.from_pyfile("./conf/project_conf.py",silent=True)
+ts = test_service.test_service()
 
 
 @app.route("/service/test_service", methods=['POST'])
@@ -23,6 +23,7 @@ def test_service():
 
     result_str = ts.process(request_data["inp"])
     result_json = {"inp": request_data["inp"], "out": result_str}
+    apploger.logger.info("request:{}\tresult:{}".format(request_data,result_str))
     return make_response(jsonify(result_json), 200)
 
 

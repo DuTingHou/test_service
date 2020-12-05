@@ -4,8 +4,8 @@ import time
 from tqdm import tqdm
 
 
-log_conf = get_log_conf("./conf/log.conf")
-myloger = logger_helper(log_conf,"base_logger")
+log_conf = get_log_conf("./conf/log.conf","base_logger")
+myloger = logger_helper(log_conf)
 
 def test():
     for i in tqdm(range(0, 2000)):

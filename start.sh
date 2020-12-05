@@ -1,0 +1,1 @@
+nohup gunicorn -c conf/gunicorn.py test_service_app:app >logs/nohup.log 2>&1 &
